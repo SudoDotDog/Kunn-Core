@@ -44,7 +44,7 @@ export class GestureBuffer {
 
     public combine(): string {
 
-        return [...this._head, this._body, this._tail]
+        return [...this._head, ...this._body, ...this._tail]
             .map((line: Line) => (' ').repeat(4 * line.nest) + line.text)
             .join('\n');
     }

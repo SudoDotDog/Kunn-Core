@@ -14,7 +14,10 @@ export const parseProtocolToString = (protocol: PROTOCOL) => {
 
 export const generateNamespace = (route: KunnRoute) => {
 
-    const parsedPath: string[] = route.path.split('/').filter(Boolean);
+    const parsedPath: string[] = route.path
+        .split('/')
+        .filter(Boolean)
+        .map((value: string) => value.replace(/ /g, ''));
 
     return `${parseProtocolToString(route.protocol)}_${parsedPath.join('_')}`;
 };

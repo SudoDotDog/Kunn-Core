@@ -1,11 +1,14 @@
 /**
  * @author WMXPY
- * @namespace Kunn
+ * @namespace Core
  * @description Kunn
  */
 
 import { readConfig } from "./config/read";
+import { PROTOCOL } from "./declare/declare";
 import { KunnConfig } from "./declare/kunn";
+import { KunnRoute } from "./declare/route";
+import { match } from "./routes/match";
 
 export class Kunn {
 
@@ -24,5 +27,10 @@ export class Kunn {
 
     public get config(): KunnConfig {
         return this._config;
+    }
+
+    public match<P extends PROTOCOL>(path: string, protocol: P): KunnRoute<P> {
+
+        return match<P>(this._config, path, protocol);
     }
 }

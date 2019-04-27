@@ -17,19 +17,18 @@ export type KunnGetRequest = {
     readonly query: Record<string, KunnIncomingData>;
 } & KunnCommonRequest;
 
-export type KunnPostRequest = {
+export type KunnBodyRequest = {
 
     readonly body: Record<string, KunnIncomingData>;
 } & KunnCommonRequest;
 
-export type KunnRoute = {
+export type KunnRequest<P extends PROTOCOL> =
+    P extends PROTOCOL.GET ? KunnGetRequest
+    : KunnBodyRequest;
+
+export type KunnRoute<P extends PROTOCOL = any> = {
 
     readonly path: string;
-    readonly protocol: PROTOCOL.GET;
-    readonly request: KunnGetRequest;
-} | {
-
-    readonly path: string;
-    readonly protocol: PROTOCOL.POST;
-    readonly request: KunnPostRequest;
+    readonly protocol: P;
+    readonly request: KunnRequest<P>;
 };

@@ -1,8 +1,8 @@
 /**
  * @author WMXPY
- * @namespace Read
+ * @namespace Config
  * @description Read
- * @override
+ * @override Unit
  */
 
 import * as __SudooIO from "@sudoo/io";
@@ -14,7 +14,7 @@ import { readConfig } from "../../../src/config/read";
 
 describe('Given [Read] helper method', (): void => {
 
-    const chance: Chance.Chance = new Chance('read-read');
+    const chance: Chance.Chance = new Chance('config-read');
 
     it('should be able to read config file', async (): Promise<void> => {
 

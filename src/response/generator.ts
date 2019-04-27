@@ -12,7 +12,7 @@ export const generateData = (data: KunnData, chance: Chance.Chance): any => {
 
     switch (data.type) {
         case TYPE.INTEGER: return chance.natural();
-
+        case TYPE.FLOAT: return chance.floating();
         case TYPE.STRING: return chance.string();
 
         case TYPE.ARRAY: return new Array(chance.natural({

@@ -14,6 +14,7 @@ export enum TYPE {
 
     STRING = 'STRING',
     INTEGER = 'INTEGER',
+    FLOAT = 'FLOAT',
     ARRAY = 'ARRAY',
     OBJECT = 'OBJECT',
 }

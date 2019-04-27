@@ -9,7 +9,10 @@ mocha := node_modules/.bin/mocha
 
 .IGNORE: clean-linux
 
-main: dev
+main: run
+
+run:
+	@NODE_ENV=development $(ts_node) example/test.ts
 
 dev:
 	@echo "[INFO] Building for development"
@@ -46,6 +49,9 @@ clean: clean-linux
 
 clean-linux:
 	@echo "[INFO] Cleaning dist files"
+	@rm -rf dist
+	@rm -rf dist_script
+	@rm -rf .nyc_output
 	@rm -rf coverage
 
 publish: install tests license build

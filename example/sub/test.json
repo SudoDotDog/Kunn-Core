@@ -1,0 +1,12 @@
+[{
+    "path": "/test",
+    "protocol": "GET",
+    "request": {
+        "query": {
+            "info": "STRING"
+        },
+        "response": {
+            "world": "STRING"
+        }
+    }
+}]

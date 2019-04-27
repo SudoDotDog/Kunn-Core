@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "routes": [
+        "$ref:./sub/test.json",
+        {
+            "path": "/hello",
+            "protocol": "GET",
+            "request": {
+                "query": {
+                    "info": "STRING"
+                },
+                "response": {
+                    "hello": "STRING"
+                }
+            }
+        }
+    ]
+}

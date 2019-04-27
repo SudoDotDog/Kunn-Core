@@ -1,0 +1,32 @@
+{
+  "name": "@kunn/core",
+  "version": "1.0.0",
+  "description": ":whale2: Core function of Kunn",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SudoDotDog/Kunn-Core.git"
+  },
+  "keywords": [
+    "Kunn",
+    "Core"
+  ],
+  "author": "WMXPY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SudoDotDog/Kunn-Core/issues"
+  },
+  "homepage": "https://github.com/SudoDotDog/Kunn-Core#readme",
+  "dependencies": {
+    "@sudoo/bark": "^2.6.1",
+    "@sudoo/io": "^1.6.0",
+    "connor": "^2.4.0"
+  },
+  "devDependencies": {
+    "@sudoo/mock": "^1.2.0",
+    "@sudoo/triforce": "^1.6.0"
+  }
+}

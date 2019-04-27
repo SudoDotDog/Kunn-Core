@@ -49,4 +49,6 @@ export const validateRequest = <P extends PROTOCOL>(route: KunnRoute<P>, validat
                 validatable as KunnValidatableBodyRequest,
             );
     }
+
+    return false;
 };

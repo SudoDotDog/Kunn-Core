@@ -8,6 +8,9 @@ export enum PROTOCOL {
 
     GET = 'GET',
     POST = 'POST',
+    DELETE = 'DELETE',
+    PUT = 'PUT',
+    OPTION = 'OPTION',
 }
 
 export enum TYPE {

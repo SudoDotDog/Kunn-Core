@@ -12,7 +12,7 @@ export type KunnCommonRequest = {
     readonly response: Record<string, KunnData>;
 };
 
-export type KunnGetRequest = {
+export type KunnQueryRequest = {
 
     readonly query: Record<string, KunnData>;
 } & KunnCommonRequest;
@@ -20,10 +20,12 @@ export type KunnGetRequest = {
 export type KunnBodyRequest = {
 
     readonly body: Record<string, KunnData>;
+    readonly query: Record<string, KunnData>;
 } & KunnCommonRequest;
 
 export type KunnRequest<P extends PROTOCOL> =
-    P extends PROTOCOL.GET ? KunnGetRequest :
+    P extends PROTOCOL.GET ? KunnQueryRequest :
+    P extends PROTOCOL.OPTION ? KunnQueryRequest :
     KunnBodyRequest;
 
 export type KunnRoute<P extends PROTOCOL = any> = {

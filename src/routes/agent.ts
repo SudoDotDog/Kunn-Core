@@ -7,6 +7,7 @@
 import { PROTOCOL } from "../declare/declare";
 import { KunnConfig } from "../declare/kunn";
 import { KunnRoute } from "../declare/route";
+import { generateResponse } from "../response/response";
 
 export class Agent<P extends PROTOCOL> {
 
@@ -27,5 +28,10 @@ export class Agent<P extends PROTOCOL> {
     private constructor(route: KunnRoute<P>) {
 
         this._route = route;
+    }
+
+    public response(seed?: any) {
+
+        return generateResponse(this._route, seed);
     }
 }

@@ -5,21 +5,21 @@
  */
 
 import { PROTOCOL } from "./declare";
-import { KunnIncomingData, KunnOncomingData } from "./exchange";
+import { KunnData } from "./exchange";
 
 export type KunnCommonRequest = {
 
-    readonly response: Record<string, KunnOncomingData>;
+    readonly response: Record<string, KunnData>;
 };
 
 export type KunnGetRequest = {
 
-    readonly query: Record<string, KunnIncomingData>;
+    readonly query: Record<string, KunnData>;
 } & KunnCommonRequest;
 
 export type KunnBodyRequest = {
 
-    readonly body: Record<string, KunnIncomingData>;
+    readonly body: Record<string, KunnData>;
 } & KunnCommonRequest;
 
 export type KunnRequest<P extends PROTOCOL> =

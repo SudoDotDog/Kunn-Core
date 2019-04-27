@@ -23,6 +23,7 @@
   "dependencies": {
     "@sudoo/bark": "^2.6.1",
     "@sudoo/io": "^1.6.0",
+    "chance": "^1.0.18",
     "connor": "^2.4.0"
   },
   "devDependencies": {

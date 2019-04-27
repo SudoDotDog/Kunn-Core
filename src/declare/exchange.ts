@@ -6,12 +6,10 @@
 
 import { TYPE } from "./declare";
 
-export type KunnIncomingData = {
+export type KunnData = {
 
-    readonly type: TYPE;
-};
-
-export type KunnOncomingData = {
-
-    readonly type: TYPE;
+    readonly type: TYPE.INTEGER | TYPE.STRING;
+} | {
+    readonly type: TYPE.ARRAY;
+    readonly element: KunnData;
 };

@@ -23,8 +23,8 @@ export type KunnBodyRequest = {
 } & KunnCommonRequest;
 
 export type KunnRequest<P extends PROTOCOL> =
-    P extends PROTOCOL.GET ? KunnGetRequest
-    : KunnBodyRequest;
+    P extends PROTOCOL.GET ? KunnGetRequest :
+    KunnBodyRequest;
 
 export type KunnRoute<P extends PROTOCOL = any> = {
 

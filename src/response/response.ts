@@ -21,7 +21,7 @@ export const generateResponse = (route: KunnRoute, seed?: any): Record<string, a
 
         return {
             ...previous,
-            [key]: generateData(current.type, chance),
+            [key]: generateData(current, chance),
         };
     }, {} as Record<string, any>);
 };

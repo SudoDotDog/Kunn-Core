@@ -12,4 +12,7 @@ export type KunnData = {
 } | {
     readonly type: TYPE.ARRAY;
     readonly element: KunnData;
+} | {
+    readonly type: TYPE.OBJECT;
+    readonly map: Record<string, KunnData>;
 };

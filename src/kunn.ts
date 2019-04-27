@@ -7,8 +7,7 @@
 import { readConfig } from "./config/read";
 import { PROTOCOL } from "./declare/declare";
 import { KunnConfig } from "./declare/kunn";
-import { KunnRoute } from "./declare/route";
-import { match } from "./routes/match";
+import { Agent } from "./routes/agent";
 
 export class Kunn {
 
@@ -26,11 +25,12 @@ export class Kunn {
     }
 
     public get config(): KunnConfig {
+
         return this._config;
     }
 
-    public match<P extends PROTOCOL>(path: string, protocol: P): KunnRoute<P> {
+    public match<P extends PROTOCOL>(path: string, protocol: P): Agent<P> | null {
 
-        return match<P>(this._config, path, protocol);
+        return Agent.match<P>(this._config, path, protocol);
     }
 }

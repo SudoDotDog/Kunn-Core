@@ -7,6 +7,8 @@
 import { PROTOCOL } from "../declare/declare";
 import { KunnConfig } from "../declare/kunn";
 import { KunnRoute } from "../declare/route";
+import { KunnValidatableRequest } from "../request/declare";
+import { validateRequest } from "../request/request";
 import { generateResponse } from "../response/response";
 
 export class Agent<P extends PROTOCOL> {
@@ -28,6 +30,11 @@ export class Agent<P extends PROTOCOL> {
     private constructor(route: KunnRoute<P>) {
 
         this._route = route;
+    }
+
+    public request(request: KunnValidatableRequest<P>) {
+
+        return validateRequest(this._route, request);
     }
 
     public response(seed?: any) {

@@ -12,12 +12,19 @@ import { GestureBuffer } from "./buffer";
 import { Line } from "./declare";
 import { generateNamespace } from "./util";
 
-export const generateTypeScriptTypeKeyedDefinition = (name: string, data: KunnData, nest: number) => {
+export const generateTypeScriptTypeKeyedDefinition = (name: string, data: KunnData, nest: number): Line[] => {
 
     const lines: Line[] = generateTypeScriptTypeDefinition(data, nest);
     if (lines[0]) {
         lines[0] = {
-            text: lines[0].text,
+            text: `readonly ${name}: ${lines[0].text}`,
+            nest: lines[0].nest,
+        };
+    }
+
+    if (lines[lines.length - 1]) {
+        lines[lines.length - 1] = {
+            text: `${lines[lines.length - 1].text};`,
             nest: lines[0].nest,
         };
     }
@@ -50,11 +57,20 @@ export const generateTypeScriptTypeDefinition = (data: KunnData, nest: number): 
         ];
 
         case TYPE.OBJECT: {
-            // const objectResult = _Map.keys(data.map).reduce()
+            const objectResult = _Map.keys(data.map).reduce((previous: Line[], key: string) => {
+
+                const typeValue: Line[] = generateTypeScriptTypeKeyedDefinition(key, data.map[key], nest + 1);
+                return [...previous, ...typeValue];
+            }, [] as Line[]);
 
             return [{
-                text: `{\n\n}`,
-                nest, // TODO
+                text: `{`,
+                nest,
+            },
+            ...objectResult,
+            {
+                text: `}`,
+                nest,
             }];
         }
     }

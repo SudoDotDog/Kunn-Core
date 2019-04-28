@@ -21,3 +21,8 @@ export enum TYPE {
     ARRAY = 'ARRAY',
     OBJECT = 'OBJECT',
 }
+
+export enum PROGRAMMING_LANGUAGE {
+
+    TYPESCRIPT = 'TYPESCRIPT',
+}

@@ -7,10 +7,11 @@
 import { _Map } from "@sudoo/bark/map";
 import { PROTOCOL, TYPE } from "../declare/declare";
 import { KunnData } from "../declare/exchange";
-import { KunnRoute } from "../declare/route";
+import { KunnRoute, KunnBodyRequest } from "../declare/route";
 import { GestureBuffer } from "./buffer";
 import { Line } from "./declare";
 import { generateNamespace } from "./util";
+import { _Mutate } from "@sudoo/bark/mutate";
 
 export const generateTypeScriptTypeKeyedDefinition = (name: string, data: KunnData, nest: number): Line[] => {
 
@@ -78,6 +79,26 @@ export const generateTypeScriptTypeDefinition = (data: KunnData, nest: number): 
     return [];
 };
 
+export const generateTypeScriptSubData = (name: string, record: Record<string, KunnData>): Line[] => {
+
+
+
+    return [{
+        text: 'export type Query = {',
+        nest: 1,
+    },
+    ..._Map.keys(record).reduce((previous: Line[], key: string) => {
+        return [
+            ...previous,
+            ...generateTypeScriptTypeKeyedDefinition(key, record[key], 2),
+        ];
+    }, [] as Line[]),
+    {
+        text: '};',
+        nest: 1,
+    }];
+};
+
 export const generateTypeScriptGesture = <P extends PROTOCOL = any>(route: KunnRoute<P>): string => {
 
     const gesture: GestureBuffer = GestureBuffer.create();
@@ -89,6 +110,18 @@ export const generateTypeScriptGesture = <P extends PROTOCOL = any>(route: KunnR
         text: `}`,
         nest: 0,
     });
+
+    gesture.appendBody(...generateTypeScriptSubData('Query', route.request.query));
+
+    if (route.protocol === PROTOCOL.DELETE
+        || route.protocol === PROTOCOL.POST
+        || route.protocol === PROTOCOL.PUT) {
+
+        const request: KunnBodyRequest = route.request as KunnBodyRequest;
+        gesture.appendBody(...generateTypeScriptSubData('Body', request.body));
+    }
+
+    gesture.appendBody(...generateTypeScriptSubData('Response', route.request.response));
 
     return gesture.combine();
 };

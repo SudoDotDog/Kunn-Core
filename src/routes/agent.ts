@@ -4,9 +4,10 @@
  * @description Agent
  */
 
-import { PROTOCOL } from "../declare/declare";
+import { PROGRAMMING_LANGUAGE, PROTOCOL } from "../declare/declare";
 import { KunnConfig } from "../declare/kunn";
 import { KunnRoute } from "../declare/route";
+import { generateTypeScriptGesture } from "../gesture/typescript";
 import { KunnValidatableRequest } from "../request/declare";
 import { validateRequest } from "../request/request";
 import { generateResponse } from "../response/response";
@@ -32,13 +33,23 @@ export class Agent<P extends PROTOCOL> {
         this._route = route;
     }
 
-    public request(request: KunnValidatableRequest<P>) {
+    public request(request: KunnValidatableRequest<P>): boolean {
 
         return validateRequest(this._route, request);
     }
 
-    public response(seed?: any) {
+    public response(seed?: any): Record<string, any> {
 
         return generateResponse(this._route, seed);
+    }
+
+    public generate(language: PROGRAMMING_LANGUAGE): string {
+
+        switch (language) {
+
+            case PROGRAMMING_LANGUAGE.TYPESCRIPT: return generateTypeScriptGesture(this._route);
+        }
+
+        return '';
     }
 }

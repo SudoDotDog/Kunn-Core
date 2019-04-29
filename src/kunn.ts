@@ -4,16 +4,14 @@
  * @description Kunn
  */
 
-import { readConfig } from "./config/read";
 import { PROTOCOL } from "./declare/declare";
 import { KunnConfig } from "./declare/kunn";
 import { Agent } from "./routes/agent";
 
 export class Kunn {
 
-    public static async fromPath(path: string): Promise<Kunn> {
+    public static async fromConfig(config: KunnConfig): Promise<Kunn> {
 
-        const config: KunnConfig = await readConfig(path);
         return new Kunn(config);
     }
 

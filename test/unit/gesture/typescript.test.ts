@@ -86,6 +86,74 @@ describe('Given [TypescriptTypeDefinition] generator method', (): void => {
         }]);
     });
 
+    it('should be able to generate optional type definition', (): void => {
+
+        const key1: string = chance.string();
+
+        const data: KunnData = {
+            type: TYPE.OBJECT,
+            map: {
+                [key1]: {
+                    type: TYPE.STRING,
+                    optional: true,
+                },
+            },
+        };
+
+        const result: Line[] = generateTypeScriptTypeDefinition(data, 0);
+
+        expect(result).to.be.deep.equal([{
+            text: '{',
+            nest: 0,
+        }, {
+            text: `readonly ${key1}?: string;`,
+            nest: 1,
+        }, {
+            text: '}',
+            nest: 0,
+        }]);
+    });
+
+    it('should be able to generate optional nested type definition', (): void => {
+
+        const key1: string = chance.string();
+
+        const data: KunnData = {
+            type: TYPE.OBJECT,
+            map: {
+                [key1]: {
+                    type: TYPE.OBJECT,
+                    optional: true,
+                    map: {
+                        [key1]: {
+                            type: TYPE.STRING,
+                            optional: true,
+                        },
+                    },
+                },
+            },
+        };
+
+        const result: Line[] = generateTypeScriptTypeDefinition(data, 0);
+
+        expect(result).to.be.deep.equal([{
+            text: '{',
+            nest: 0,
+        }, {
+            text: `readonly ${key1}?: {`,
+            nest: 1,
+        }, {
+            text: `readonly ${key1}?: string;`,
+            nest: 2,
+        }, {
+            text: `};`,
+            nest: 1,
+        }, {
+            text: '}',
+            nest: 0,
+        }]);
+    });
+
     it('should be able to generate nested type definition', (): void => {
 
         const key1: string = chance.string();

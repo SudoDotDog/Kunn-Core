@@ -41,12 +41,13 @@ export const validateRecord = (data: Record<string, KunnData>, validatable: Reco
     for (const key of _Map.keys(data)) {
 
         const current: KunnData = data[key];
+        const value: any = validatable[key];
 
-        if (!validatable[key] && !current.optional) {
-            return false;
+        if (value === undefined) {
+            return Boolean(current.optional);
         }
 
-        if (!validateValue(current, validatable[key])) {
+        if (!validateValue(current, value)) {
             return false;
         }
     }

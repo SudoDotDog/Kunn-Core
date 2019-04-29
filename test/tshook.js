@@ -1,6 +1,7 @@
 /**
  * @author WMXPY
- * @namespace TS-HOOK
+ * @namespace TSHOOK
+ * @description TSHOOK
  */
 
 const ts_node = require("ts-node");

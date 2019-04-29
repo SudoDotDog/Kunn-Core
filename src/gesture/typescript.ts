@@ -7,18 +7,19 @@
 import { _Map } from "@sudoo/bark/map";
 import { PROTOCOL, TYPE } from "../declare/declare";
 import { KunnData } from "../declare/exchange";
-import { KunnRoute, KunnBodyRequest } from "../declare/route";
+import { KunnBodyRequest, KunnRoute } from "../declare/route";
 import { GestureBuffer } from "./buffer";
 import { Line } from "./declare";
 import { generateNamespace } from "./util";
-import { _Mutate } from "@sudoo/bark/mutate";
 
 export const generateTypeScriptTypeKeyedDefinition = (name: string, data: KunnData, nest: number): Line[] => {
 
     const lines: Line[] = generateTypeScriptTypeDefinition(data, nest);
+    const properName: string = data.optional ? name + '?' : name;
+
     if (lines[0]) {
         lines[0] = {
-            text: `readonly ${name}: ${lines[0].text}`,
+            text: `readonly ${properName}: ${lines[0].text}`,
             nest: lines[0].nest,
         };
     }
@@ -35,6 +36,7 @@ export const generateTypeScriptTypeKeyedDefinition = (name: string, data: KunnDa
 export const generateTypeScriptTypeDefinition = (data: KunnData, nest: number): Line[] => {
 
     switch (data.type) {
+
         case TYPE.FLOAT:
         case TYPE.INTEGER: return [{
             text: 'number',
@@ -58,8 +60,8 @@ export const generateTypeScriptTypeDefinition = (data: KunnData, nest: number): 
         ];
 
         case TYPE.OBJECT: {
-            const objectResult = _Map.keys(data.map).reduce((previous: Line[], key: string) => {
 
+            const objectResult = _Map.keys(data.map).reduce((previous: Line[], key: string) => {
                 const typeValue: Line[] = generateTypeScriptTypeKeyedDefinition(key, data.map[key], nest + 1);
                 return [...previous, ...typeValue];
             }, [] as Line[]);
@@ -80,8 +82,6 @@ export const generateTypeScriptTypeDefinition = (data: KunnData, nest: number): 
 };
 
 export const generateTypeScriptSubData = (name: string, record: Record<string, KunnData>): Line[] => {
-
-
 
     return [{
         text: 'export type Query = {',

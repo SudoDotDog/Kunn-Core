@@ -7,7 +7,9 @@
 import { PROGRAMMING_LANGUAGE, PROTOCOL } from "../declare/declare";
 import { KunnConfig } from "../declare/kunn";
 import { KunnRoute } from "../declare/route";
+import { generateGoLangGesture } from "../gesture/go";
 import { generateTypeScriptGesture } from "../gesture/typescript";
+import { ERROR_CODE, panic } from "../panic/panic";
 import { KunnValidatableRequest } from "../request/declare";
 import { validateRequest } from "../request/request";
 import { generateResponse } from "../response/response";
@@ -47,9 +49,10 @@ export class Agent<P extends PROTOCOL> {
 
         switch (language) {
 
+            case PROGRAMMING_LANGUAGE.GOLANG: return generateGoLangGesture(this._route);
             case PROGRAMMING_LANGUAGE.TYPESCRIPT: return generateTypeScriptGesture(this._route);
         }
 
-        return '';
+        throw panic.code(ERROR_CODE.SPECIFIED_LANGUAGE_NOT_FOUND, language);
     }
 }

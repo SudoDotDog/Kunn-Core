@@ -24,5 +24,6 @@ export enum TYPE {
 
 export enum PROGRAMMING_LANGUAGE {
 
+    GOLANG = 'GOLANG',
     TYPESCRIPT = 'TYPESCRIPT',
 }

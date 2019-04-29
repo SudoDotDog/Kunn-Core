@@ -42,10 +42,10 @@ export const generateGoLangTypeDefinition = (data: KunnData, nest: number): Line
 
         case TYPE.ARRAY: {
 
-            const definition: Line[] = generateGoLangTypeDefinition(data.element, nest + 1);
+            const definition: Line[] = generateGoLangTypeDefinition(data.element, nest);
             if (definition[0]) {
                 definition[0] = {
-                    text: `[]${definition[0]}`,
+                    text: `[]${definition[0].text}`,
                     nest: definition[0].nest,
                 };
             }

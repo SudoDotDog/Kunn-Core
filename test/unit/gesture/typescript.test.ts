@@ -274,6 +274,6 @@ describe('Given [TypescriptGesture] generator method', (): void => {
 
         const result: string = generateTypeScriptGesture(data);
 
-        expect(result).to.be.equal(`export declare namespace Post_test {\n    export type Query = {\n        readonly ${key1}: string;\n    };\n    export type Query = {\n        readonly ${key2}: Array<\n            number\n        >;\n    };\n    export type Query = {\n        readonly ${key3}: {\n            readonly ${key1}: Array<\n                number\n            >;\n        };\n    };\n}`);
+        expect(result).to.be.equal(`export declare namespace Post_test {\n    export type Query = {\n        readonly ${key1}: string;\n    };\n    export type Body = {\n        readonly ${key2}: Array<\n            number\n        >;\n    };\n    export type Response = {\n        readonly ${key3}: {\n            readonly ${key1}: Array<\n                number\n            >;\n        };\n    };\n}`);
     });
 });

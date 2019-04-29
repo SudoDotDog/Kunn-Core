@@ -84,7 +84,7 @@ export const generateTypeScriptTypeDefinition = (data: KunnData, nest: number): 
 export const generateTypeScriptSubData = (name: string, record: Record<string, KunnData>): Line[] => {
 
     return [{
-        text: 'export type Query = {',
+        text: `export type ${name} = {`,
         nest: 1,
     },
     ..._Map.keys(record).reduce((previous: Line[], key: string) => {

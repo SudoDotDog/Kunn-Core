@@ -6,6 +6,12 @@
 
 import { PROTOCOL } from "../declare/declare";
 import { KunnRoute } from "../declare/route";
+import { Line } from "./declare";
+
+export const createSimple = (text: string, nest: number): Line => ({
+    text,
+    nest,
+});
 
 export const parseProtocolToString = (protocol: PROTOCOL) => {
 

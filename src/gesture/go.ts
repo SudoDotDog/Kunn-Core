@@ -10,7 +10,7 @@ import { KunnData } from "../declare/exchange";
 import { KunnBodyRequest, KunnRoute } from "../declare/route";
 import { GestureBuffer } from "./buffer";
 import { Line } from "./declare";
-import { generateNamespace } from "./util";
+import { createSimple, generateNamespace } from "./util";
 
 export const generateGoLangTypeKeyedDefinition = (name: string, data: KunnData, nest: number): Line[] => {
 
@@ -30,15 +30,9 @@ export const generateGoLangTypeDefinition = (data: KunnData, nest: number): Line
 
     switch (data.type) {
 
-        case TYPE.FLOAT:
-        case TYPE.INTEGER: return [{
-            text: 'int',
-            nest,
-        }];
-        case TYPE.STRING: return [{
-            text: 'string',
-            nest,
-        }];
+        case TYPE.FLOAT: return [createSimple('float32', nest)];
+        case TYPE.INTEGER: return [createSimple('int32', nest)];
+        case TYPE.STRING: return [createSimple('string', nest)];
 
         case TYPE.ARRAY: {
 

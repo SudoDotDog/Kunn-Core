@@ -24,6 +24,16 @@ export class GestureBuffer {
         this._tail = [];
     }
 
+    public get lines(): Line[] {
+
+        return [...this._head, ...this._body, ...this._tail];
+    }
+
+    public get length(): number {
+
+        return this.lines.length;
+    }
+
     public appendHead(...lines: Line[]): this {
 
         this._head.push(...lines);
@@ -42,10 +52,10 @@ export class GestureBuffer {
         return this;
     }
 
-    public combine(): string {
+    public combine(indent: string = ' ', count: number = 4): string {
 
         return [...this._head, ...this._body, ...this._tail]
-            .map((line: Line) => (' ').repeat(4 * line.nest) + line.text)
+            .map((line: Line) => (indent).repeat(count * line.nest) + line.text)
             .join('\n');
     }
 }

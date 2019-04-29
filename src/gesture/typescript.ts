@@ -10,7 +10,7 @@ import { KunnData } from "../declare/exchange";
 import { KunnBodyRequest, KunnRoute } from "../declare/route";
 import { GestureBuffer } from "./buffer";
 import { Line } from "./declare";
-import { generateNamespace } from "./util";
+import { createSimple, generateNamespace } from "./util";
 
 export const generateTypeScriptTypeKeyedDefinition = (name: string, data: KunnData, nest: number): Line[] => {
 
@@ -38,14 +38,8 @@ export const generateTypeScriptTypeDefinition = (data: KunnData, nest: number): 
     switch (data.type) {
 
         case TYPE.FLOAT:
-        case TYPE.INTEGER: return [{
-            text: 'number',
-            nest,
-        }];
-        case TYPE.STRING: return [{
-            text: 'string',
-            nest,
-        }];
+        case TYPE.INTEGER: return [createSimple('number', nest)];
+        case TYPE.STRING: return [createSimple('string', nest)];
 
         case TYPE.ARRAY: return [
             {

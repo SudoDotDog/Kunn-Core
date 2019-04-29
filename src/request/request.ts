@@ -7,16 +7,7 @@
 import { PROTOCOL } from "../declare/declare";
 import { KunnBodyRequest, KunnQueryRequest, KunnRoute } from "../declare/route";
 import { KunnValidatableBodyRequest, KunnValidatableQueryRequest, KunnValidatableRequest } from "./declare";
-
-export const validateQueryRequest = (request: KunnQueryRequest, validatable: KunnValidatableQueryRequest): boolean => {
-
-    return true;
-};
-
-export const validateBodyRequest = (request: KunnBodyRequest, validatable: KunnValidatableBodyRequest): boolean => {
-
-    return true;
-};
+import { validateBodyRequest, validateQueryRequest } from "./validate";
 
 export const validateRequest = <P extends PROTOCOL>(route: KunnRoute<P>, validatable: KunnValidatableRequest<P>): boolean => {
 

@@ -9,6 +9,7 @@ import { KunnData } from "./exchange";
 
 export type KunnCommonRequest = {
 
+    readonly reject?: Record<string, KunnData>;
     readonly response: Record<string, KunnData>;
 };
 

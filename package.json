@@ -1,8 +1,7 @@
 {
   "name": "@kunn/core",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": ":whale2: Core function of Kunn",
-  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
@@ -26,6 +25,7 @@
     "connor": "^2.4.0"
   },
   "devDependencies": {
+    "@sudoo/io": "^1.6.0",
     "@sudoo/mock": "^1.2.0",
     "@sudoo/triforce": "^1.6.0"
   },

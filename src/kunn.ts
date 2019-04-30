@@ -29,6 +29,11 @@ export class Kunn {
 
     public match<P extends PROTOCOL>(path: string, protocol: P): Agent<P> | null {
 
-        return Agent.match<P>(this._config, path, protocol);
+        for (const route of this._config.routes) {
+            if (route.path === path && route.protocol === protocol) {
+                return Agent.create<P>(route);
+            }
+        }
+        return null;
     }
 }

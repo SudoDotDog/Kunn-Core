@@ -14,18 +14,11 @@ import { KunnValidatableRequest } from "../request/declare";
 import { validateRequest } from "../request/request";
 import { generateResponse } from "../response/response";
 
-export class Agent<P extends PROTOCOL> {
+export class Agent<P extends PROTOCOL = any> {
 
-    public static match<P extends PROTOCOL>(config: KunnConfig, path: string, protocol: P): Agent<P> | null {
+    public static create<P extends PROTOCOL = any>(route: KunnRoute<P>): Agent<P> {
 
-        for (const route of config.routes) {
-
-            if (route.path === path && route.protocol === protocol) {
-
-                return new Agent<P>(route);
-            }
-        }
-        return null;
+        return new Agent<P>(route);
     }
 
     private readonly _route: KunnRoute<P>;

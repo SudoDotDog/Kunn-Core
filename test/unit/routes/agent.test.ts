@@ -27,4 +27,25 @@ describe('Given {Agent} class', (): void => {
 
         expect(agent).to.be.instanceOf(Agent);
     });
+
+    it('should be able to validate request', (): void => {
+
+        const agent: Agent<PROTOCOL.GET> = Agent.create({
+            path: chance.string(),
+            protocol: PROTOCOL.GET,
+            request: {
+                query: {},
+                response: {},
+            },
+        });
+
+        const result: boolean = agent.request({
+            query: {
+                [chance.string()]: chance.string(),
+            },
+        });
+
+        // tslint:disable-next-line
+        expect(result).to.be.true;
+    });
 });

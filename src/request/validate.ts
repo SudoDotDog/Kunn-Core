@@ -38,6 +38,10 @@ export const validateValue = (data: KunnData, value: any): boolean => {
 
 export const validateRecord = (data: Record<string, KunnData>, validatable: Record<string, any>): boolean => {
 
+
+    const dataKeys: string[] = _Map.keys(data);
+    const validatableKeys: string[] = _Map.keys(validatable);
+
     for (const key of _Map.keys(data)) {
 
         const current: KunnData = data[key];
@@ -57,10 +61,19 @@ export const validateRecord = (data: Record<string, KunnData>, validatable: Reco
 
 export const validateQueryRequest = (request: KunnQueryRequest, validatable: KunnValidatableQueryRequest): boolean => {
 
+    if (!validateRecord(request.query, validatable.query)) {
+        return false;
+    }
     return true;
 };
 
 export const validateBodyRequest = (request: KunnBodyRequest, validatable: KunnValidatableBodyRequest): boolean => {
 
+    if (!validateRecord(request.query, validatable.query)) {
+        return false;
+    }
+    if (!validateRecord(request.body, validatable.body)) {
+        return false;
+    }
     return true;
 };

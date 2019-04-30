@@ -16,7 +16,7 @@ describe('Given {Agent} class', (): void => {
 
     it('should be able to create agent', (): void => {
 
-        const agent: Agent = Agent.create({
+        const agent: Agent<PROTOCOL.GET> = Agent.create({
             path: chance.string(),
             protocol: PROTOCOL.GET,
             request: {

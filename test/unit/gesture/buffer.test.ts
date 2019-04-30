@@ -9,7 +9,7 @@ import { expect } from "chai";
 import * as Chance from "chance";
 import { GestureBuffer } from "../../../src/gesture/buffer";
 import { Line } from "../../../src/gesture/declare";
-import { createSimple } from "../../../src/gesture/util";
+import { GestureUtil } from "../../../src/gesture/util";
 
 describe('Given {GestureBuffer} class', (): void => {
 
@@ -25,7 +25,7 @@ describe('Given {GestureBuffer} class', (): void => {
     it('should be able to append lines', (): void => {
 
         const buffer: GestureBuffer = GestureBuffer.create();
-        const simple: Line = createSimple(chance.string(), 0);
+        const simple: Line = GestureUtil.createSimple(chance.string(), 0);
 
         buffer.appendBody(simple);
 
@@ -35,7 +35,7 @@ describe('Given {GestureBuffer} class', (): void => {
     it('should be able to append complex lines', (): void => {
 
         const buffer: GestureBuffer = GestureBuffer.create();
-        const simple: Line = createSimple(chance.string(), 0);
+        const simple: Line = GestureUtil.createSimple(chance.string(), 0);
 
         buffer.appendBody(simple, simple)
             .appendHead(simple, simple)
@@ -48,7 +48,7 @@ describe('Given {GestureBuffer} class', (): void => {
 
         const buffer: GestureBuffer = GestureBuffer.create();
         const value: string = chance.string();
-        const simple: Line = createSimple(value, 0);
+        const simple: Line = GestureUtil.createSimple(value, 0);
 
         buffer.appendBody(simple)
             .appendHead(simple)
@@ -61,7 +61,7 @@ describe('Given {GestureBuffer} class', (): void => {
 
         const buffer: GestureBuffer = GestureBuffer.create();
         const value: string = chance.string();
-        const simple: Line = createSimple(value, 1);
+        const simple: Line = GestureUtil.createSimple(value, 1);
 
         buffer.appendBody(simple)
             .appendHead(simple)

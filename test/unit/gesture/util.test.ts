@@ -8,7 +8,7 @@
 import { expect } from "chai";
 import * as Chance from "chance";
 import { PROTOCOL } from "../../../src";
-import { generateNamespace, parseProtocolToString } from "../../../src/gesture/util";
+import { GestureUtil } from "../../../src/gesture/util";
 
 describe('Given [Util] helper method', (): void => {
 
@@ -18,7 +18,7 @@ describe('Given [Util] helper method', (): void => {
 
         const protocol: PROTOCOL = PROTOCOL.OPTION;
 
-        const parsed: string = parseProtocolToString(protocol);
+        const parsed: string = GestureUtil.parseProtocolToString(protocol);
 
         expect(parsed).to.be.equal('Option');
     });
@@ -28,7 +28,7 @@ describe('Given [Util] helper method', (): void => {
         const path: string = chance.name();
         const protocol: PROTOCOL = PROTOCOL.POST;
 
-        const parsed: string = generateNamespace({
+        const parsed: string = GestureUtil.generateNamespace({
             path: `/${path}/${path}`,
             protocol,
             request: null as any,

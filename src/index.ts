@@ -7,6 +7,7 @@
 import { Kunn } from "./kunn";
 
 export * from "./declare/import";
+export * from "./gesture/import";
 export { Agent } from "./routes/agent";
 export { Kunn };
 

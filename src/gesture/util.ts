@@ -8,22 +8,27 @@ import { PROTOCOL } from "../declare/declare";
 import { KunnRoute } from "../declare/route";
 import { Line } from "./declare";
 
-export const createSimple = (text: string, nest: number): Line => ({
-    text,
-    nest,
-});
+export class GestureUtil {
 
-export const parseProtocolToString = (protocol: PROTOCOL) => {
+    public static createSimple(text: string, nest: number): Line {
+        return {
+            text,
+            nest,
+        };
+    }
 
-    return `${protocol[0].toUpperCase()}${protocol.toLowerCase().substring(1)}`;
-};
+    public static parseProtocolToString(protocol: PROTOCOL): string {
 
-export const generateNamespace = (route: KunnRoute) => {
+        return `${protocol[0].toUpperCase()}${protocol.toLowerCase().substring(1)}`;
+    }
 
-    const parsedPath: string[] = route.path
-        .split('/')
-        .filter(Boolean)
-        .map((value: string) => value.replace(/ /g, ''));
+    public static generateNamespace(route: KunnRoute): string {
 
-    return `${parseProtocolToString(route.protocol)}_${parsedPath.join('_')}`;
-};
+        const parsedPath: string[] = route.path
+            .split('/')
+            .filter(Boolean)
+            .map((value: string) => value.replace(/ /g, ''));
+
+        return `${this.parseProtocolToString(route.protocol)}_${parsedPath.join('_')}`;
+    }
+}

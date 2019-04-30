@@ -6,3 +6,17 @@
 [![downloads](https://img.shields.io/npm/dm/@kunn/core.svg)](https://www.npmjs.com/package/@kunn/core)
 
 :whale2: Core function of Kunn
+
+## Install
+
+```sh
+yarn add @kunn/core
+```
+
+## Usage
+
+```js
+import { Kunn } from "@kunn/core";
+
+Kunn.fromConfig({ ...config });
+```

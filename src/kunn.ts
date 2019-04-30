@@ -10,7 +10,7 @@ import { Agent } from "./routes/agent";
 
 export class Kunn {
 
-    public static async fromConfig(config: KunnConfig): Promise<Kunn> {
+    public static fromConfig(config: KunnConfig): Kunn {
 
         return new Kunn(config);
     }

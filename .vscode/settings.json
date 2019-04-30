@@ -1,9 +1,14 @@
 {
     "cSpell.words": [
+        "Validatable",
+        "WMXPY",
         "codecov",
         "connor",
         "kunn",
-        "sudoo"
+        "struct",
+        "sudoo",
+        "triforce",
+        "tshook"
     ],
     "tslint.configFile": "typescript/tslint.json",
     "javascript.preferences.importModuleSpecifier": "auto",

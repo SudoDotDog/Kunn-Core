@@ -21,9 +21,3 @@ export enum TYPE {
     ARRAY = 'ARRAY',
     OBJECT = 'OBJECT',
 }
-
-export enum PROGRAMMING_LANGUAGE {
-
-    GOLANG = 'GOLANG',
-    TYPESCRIPT = 'TYPESCRIPT',
-}

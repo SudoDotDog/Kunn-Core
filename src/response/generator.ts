@@ -18,12 +18,12 @@ export const generateData = (data: KunnData, chance: Chance.Chance): any => {
         case TYPE.ARRAY: return new Array(chance.natural({
             min: 5,
             max: 20,
-        })).fill(undefined).map(() => generateData(data, chance));
+        })).fill(undefined).map(() => generateData(data.element, chance));
 
         case TYPE.OBJECT: return _Map.keys(data.map).reduce((previous: Record<string, any>, key: string) => {
             return {
                 ...previous,
-                [key]: generateData(data, chance),
+                [key]: generateData(data.map[key], chance),
             };
         }, {} as Record<string, any>);
 

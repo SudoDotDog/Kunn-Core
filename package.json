@@ -1,6 +1,6 @@
 {
   "name": "@kunn/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": ":whale2: Core function of Kunn",
   "directories": {
     "doc": "docs"

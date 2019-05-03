@@ -25,3 +25,23 @@ export const generateResponse = (route: KunnRoute, seed?: any): Record<string, a
         };
     }, {} as Record<string, any>);
 };
+
+export const generateReject = (route: KunnRoute, seed?: any): Record<string, any> => {
+
+    if (!route.request.reject) {
+        return {};
+    }
+
+    const chance: Chance.Chance = new Chance(seed);
+    const response: Record<string, KunnData> = route.request.reject;
+
+    return _Map.keys(response).reduce((previous: Record<string, any>, key: string) => {
+
+        const current: KunnData = response[key];
+
+        return {
+            ...previous,
+            [key]: generateData(current, chance),
+        };
+    }, {} as Record<string, any>);
+};

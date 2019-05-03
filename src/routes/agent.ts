@@ -8,7 +8,7 @@ import { PROTOCOL } from "../declare/declare";
 import { KunnRoute } from "../declare/route";
 import { KunnValidatableRequest } from "../request/declare";
 import { validateRequest } from "../request/request";
-import { generateResponse } from "../response/response";
+import { generateReject, generateResponse } from "../response/response";
 
 export class Agent<P extends PROTOCOL> {
 
@@ -37,5 +37,10 @@ export class Agent<P extends PROTOCOL> {
     public response(seed?: any): Record<string, any> {
 
         return generateResponse(this._route, seed);
+    }
+
+    public reject(seed?: any): Record<string, any> {
+
+        return generateReject(this._route, seed);
     }
 }

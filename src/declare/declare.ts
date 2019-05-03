@@ -4,6 +4,14 @@
  * @description Declare
  */
 
+export const toUpperCase = <T extends string = any>(stuff: T): T => {
+
+    if (stuff.toUpperCase) {
+        return stuff.toUpperCase() as any as T;
+    }
+    return '' as any as T;
+};
+
 export enum PROTOCOL {
 
     GET = 'GET',

@@ -7,24 +7,34 @@
 
 import { expect } from "chai";
 import * as Chance from "chance";
-import { validateKunnData } from "../../../src/config/validate";
+import { validateKunnData, validateKunnRecord } from "../../../src/config/validate";
 import { TYPE } from "../../../src/declare/declare";
 import { KunnData } from "../../../src/declare/exchange";
 
-describe('Given [ConfigValidation] helper methods', (): void => {
+describe('Given [validateKunnData] function', (): void => {
 
-    const chance: Chance.Chance = new Chance('config-validate');
+    const chance: Chance.Chance = new Chance('config-validate-kunn-data');
 
-    it('should be able to validate kunn data', (): void => {
+    it('should be able to validate basic kunn data', (): void => {
 
-        const pattern: KunnData = {
+        const patternInt: KunnData = {
             type: TYPE.INTEGER,
         };
 
-        const result: boolean = validateKunnData(pattern);
+        const patternFloat: KunnData = {
+            type: TYPE.FLOAT,
+        };
+
+        const patternString: KunnData = {
+            type: TYPE.STRING,
+        };
 
         // tslint:disable-next-line
-        expect(result).to.be.true;
+        expect(validateKunnData(patternInt)).to.be.true;
+        // tslint:disable-next-line
+        expect(validateKunnData(patternFloat)).to.be.true;
+        // tslint:disable-next-line
+        expect(validateKunnData(patternString)).to.be.true;
     });
 
     it('should be able to validate array kunn data', (): void => {
@@ -77,6 +87,47 @@ describe('Given [ConfigValidation] helper methods', (): void => {
         };
 
         const result: boolean = validateKunnData(pattern);
+
+        // tslint:disable-next-line
+        expect(result).to.be.false;
+    });
+});
+
+describe('Given [validateKunnRecord] function', (): void => {
+
+    const chance: Chance.Chance = new Chance('config-validate-kunn-record');
+
+    it('should be able to validate correct record', (): void => {
+
+        const pattern: KunnData = {
+            type: TYPE.INTEGER,
+        };
+
+        const record: Record<string, KunnData> = {
+
+            [chance.string()]: pattern,
+            [chance.string()]: pattern,
+        };
+
+        const result: boolean = validateKunnRecord(record);
+
+        // tslint:disable-next-line
+        expect(result).to.be.true;
+    });
+
+    it('should be able to fail error record', (): void => {
+
+        const pattern: KunnData = {
+            type: TYPE.INTEGER,
+        };
+
+        const record: Record<string, KunnData> = {
+
+            [chance.string()]: pattern,
+            [chance.string()]: {} as any,
+        };
+
+        const result: boolean = validateKunnRecord(record);
 
         // tslint:disable-next-line
         expect(result).to.be.false;
